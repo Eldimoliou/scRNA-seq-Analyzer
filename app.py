@@ -135,7 +135,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
                         adata = sc.read_h5ad(file)
                         st.write(f"📄 {file.name}: Διαστάσεις δεδομένων {adata.shape}")
 
-                        # Εδώ προσθέτεις τη στήλη condition
+                        #  στήλη condition
                         if "control" in file.name.lower():
                             adata.obs["condition"] = "control"
                         elif "disease" in file.name.lower():
@@ -146,7 +146,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
 
 
 
-                        # Ελαφριά προεπεξεργασία για Scanorama
+                        #  προεπεξεργασία για Scanorama
                         sc.pp.normalize_total(adata, target_sum=1e4)
                         sc.pp.log1p(adata)
                         sc.pp.highly_variable_genes(adata, n_top_genes=2000, subset=True, flavor='seurat_v3')
@@ -235,7 +235,7 @@ elif page == "📊 DEG Ανάλυση":
         try:
             adata = sc.read_h5ad(ADATA_PATH)
 
-            # Αν δεν έχει γίνει log1p, το κάνουμε
+            # Αν δεν έχει γίνει log1p
             if "log1p" not in adata.uns:
                 sc.pp.log1p(adata)
 
