@@ -428,9 +428,9 @@ elif page == "👥 Πληροφορίες Ομάδας":
     st.header("👥 Πληροφορίες Ομάδας")
     st.markdown("""
     **Ονόματα Μελών:**
-    - Ελένη Στύλου – UI / Frontend , Latex
-    - Ελευθερία Δημολιού – Data Processing , Docker, UI
-    - Παρασκευή Σιαμπανάι– Latex , UI
+    - Ελένη Στύλου – UI , Latex , Φόρτωση Δεδομένων, Gene Expression Plots
+    - Ελευθερία Δημολιού – Scanorama, DEG Ανάλυση, Volcano Plot, Docker
+    - Παρασκευή Σιαμπανάι– Latex , Προεπεξεργασία
 
 
 
@@ -441,5 +441,5 @@ elif page == "👥 Πληροφορίες Ομάδας":
 
 
 
-    **GitHub Repo:** [link]
+    **GitHub Repo:** https://github.com/Eldimoliou/scRNA-seq-Analyzer
     """)
