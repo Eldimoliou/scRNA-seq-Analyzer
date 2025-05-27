@@ -6,3 +6,4 @@ numpy
 anndata
 scanorama
 hdf5plugin
+seaborn
