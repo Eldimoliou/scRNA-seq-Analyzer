@@ -1,0 +1,8 @@
+streamlit
+scanpy
+pandas
+matplotlib
+numpy
+anndata
+scanorama
+hdf5plugin
