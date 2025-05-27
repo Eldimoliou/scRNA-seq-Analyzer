@@ -24,13 +24,12 @@ def data_preprocessor(adata):
     st.write("📦 Κανονικοποίηση, Log1p, Scaling και PCA...")
     sc.pp.normalize_total(adata, target_sum=1e4)  # Κανονικοποίηση
     sc.pp.log1p(adata)  # Logarithm μετασχηματισμός
-    adata.raw = adata  # Αποθηκεύουμε τα raw δεδομένα
+    adata.raw = adata  # Αποθηκεύει τα raw δεδομένα
     sc.pp.scale(adata, max_value=10)  # Standardize τα χαρακτηριστικά
-    sc.pp.pca(adata)  # PCA ανάλυση
+    sc.pp.pca(adata)  # PCA
     return adata
 
 
-# Set page config
 st.set_page_config(page_title="scRNA-seq Analyzer", layout="wide")
 
 # Sidebar
@@ -46,7 +45,7 @@ page = st.sidebar.radio("Μενού:", [
     "👥 Πληροφορίες Ομάδας"
 ])
 
-# Tabs content
+
 if page == "🏠 Αρχική":
     st.title("🔬 Εφαρμογή Ανάλυσης scRNA-seq Δεδομένων")
     st.markdown("""
@@ -96,8 +95,8 @@ elif page == "🧪 Προεπεξεργασία":
         st.write(f"Βρέθηκαν τα αρχεία: {h5ad_files}")
 
         if st.button("Εκτέλεση φίλτρων σε όλα τα αρχεία"):
-            import hdf5plugin  # Βεβαιώσου ότι είναι εγκατεστημένο
-            import ap  # Βεβαιώσου ότι το module ap υπάρχει με την adata_preprocessor
+            import hdf5plugin 
+            import ap 
 
             for file in h5ad_files:
                 file_path = os.path.join(directory, file)
@@ -179,7 +178,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
 
 
 
-                    # Εδώ βάζεις τον χάρτη από batch IDs σε condition
+                    
                     condition_map = {'0': 'control', '1': 'disease'}
                     combined_adata.obs['condition'] = combined_adata.obs['batch'].map(condition_map).astype(str)
 
@@ -203,7 +202,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
                     # Εμφάνιση στο Streamlit
                     st.pyplot(plt.gcf())
 
-                    # Προαιρετικά: Αποθήκευση ως αρχείο
+                    
                     plt.savefig("./data/h5ad_integrat/umap_batch_visualization.png", dpi=300)
 
                     # Εκκαθάριση για επόμενη χρήση
@@ -327,7 +326,7 @@ elif page == "🌋 Volcano Plot":
                 legend="full",
             )
 
-            # Όρια και γραμμές κατωφλίου
+            # Όρια 
             plt.axhline(y=-np.log10(0.05), color='gray', linestyle='dashed')
             plt.axvline(x=-1, color='gray', linestyle='dashed')
             plt.axvline(x=1, color='gray', linestyle='dashed')
