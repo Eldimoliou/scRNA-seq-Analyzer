@@ -70,7 +70,7 @@ elif page == "📁 Φόρτωση Δεδομένων":
                 st.write(f"📐 Σχήμα: {adata.shape[0]} κύτταρα × {adata.shape[1]} γονίδια")
                 st.dataframe(adata.obs.head())
             except Exception as e:
-                st.error(f"❌ Σφάλμα κατά την ανάγνωση του αρχείου: {e}")
+                st.error(f"Σφάλμα κατά την ανάγνωση του αρχείου: {e}")
 
 
 
@@ -108,7 +108,7 @@ elif page == "🧪 Προεπεξεργασία":
                     adata_filtered.write_h5ad(output_path, compression=hdf5plugin.FILTERS["zstd"])
                     st.success(f"✅ Αποθηκεύτηκε το φιλτραρισμένο αρχείο: {output_path}")
                 except Exception as e:
-                    st.error(f"❌ Σφάλμα στην επεξεργασία του αρχείου {file}: {e}")
+                    st.error(f"Σφάλμα στην επεξεργασία του αρχείου {file}: {e}")
 
 
 
@@ -157,7 +157,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
                     shared_genes = set.intersection(*(set(ad.var_names) for ad in adatas))
                     st.write(f"🔬 Κοινά γονίδια: {len(shared_genes)}")
                     if len(shared_genes) == 0:
-                        st.error("❌ Δεν υπάρχουν κοινά γονίδια μεταξύ των αρχείων!")
+                        st.error("Δεν υπάρχουν κοινά γονίδια μεταξύ των αρχείων!")
                         st.stop()
 
                     adatas = [adata[:, list(shared_genes)] for adata in adatas]
@@ -214,7 +214,7 @@ elif page == "🔗 Ενοποίηση (Scanorama)":
                     st.success(f"✅ Ενοποιημένα δεδομένα αποθηκεύτηκαν στο: `{output_file}`")
 
                 except Exception as e:
-                    st.error(f"❌ Σφάλμα: {e}")
+                    st.error(f" Σφάλμα: {e}")
 
 
 
@@ -230,7 +230,7 @@ elif page == "📊 DEG Ανάλυση":
 
 
     if not os.path.exists(ADATA_PATH):
-        st.error(f"❌ Το αρχείο {ADATA_PATH} δεν βρέθηκε. Παρακαλώ συγχώνευσε πρώτα τα αρχεία.")
+        st.error(f" Το αρχείο {ADATA_PATH} δεν βρέθηκε. Παρακαλώ συγχώνευσε πρώτα τα αρχεία.")
     else:
         try:
             adata = sc.read_h5ad(ADATA_PATH)
@@ -241,7 +241,7 @@ elif page == "📊 DEG Ανάλυση":
 
             # Ελέγχουμε αν υπάρχει η στήλη condition για groupby
             if "condition" not in adata.obs.columns:
-                st.error("❌ Η στήλη 'condition' δεν βρέθηκε στο .obs. Χρειάζεται για το groupby.")
+                st.error(" Η στήλη 'condition' δεν βρέθηκε στο .obs. Χρειάζεται για το groupby.")
             else:
                 sc.tl.rank_genes_groups(
                     adata,
@@ -279,7 +279,7 @@ elif page == "📊 DEG Ανάλυση":
                 st.success(f"✅ Φιλτραρισμένα DEG αποθηκεύτηκαν στο: {out_path}")
 
         except Exception as e:
-            st.error(f"❌ Σφάλμα κατά την ανάλυση DEG: {e}")
+            st.error(f" Σφάλμα κατά την ανάλυση DEG: {e}")
 
 
 
@@ -300,7 +300,7 @@ elif page == "🌋 Volcano Plot":
     DEG_CSV_PATH = "./data/deg_data/alzheimer_data_degs.csv"
 
     if not os.path.exists(DEG_CSV_PATH):
-        st.error(f"❌ Το αρχείο DEG δεν βρέθηκε: {DEG_CSV_PATH}")
+        st.error(f"Το αρχείο DEG δεν βρέθηκε: {DEG_CSV_PATH}")
     else:
         df = pd.read_csv(DEG_CSV_PATH)
         if df.empty:
@@ -358,7 +358,7 @@ elif page == "🧬 Gene Expression Plots":
     H5AD_PATH = "./data/h5ad_integrat/integrated_scanorama.h5ad"
 
     if not os.path.exists(H5AD_PATH):
-        st.error(f"❌ Το αρχείο δεν βρέθηκε: {H5AD_PATH}")
+        st.error(f"Το αρχείο δεν βρέθηκε: {H5AD_PATH}")
     else:
         adata = sc.read_h5ad(H5AD_PATH)
 
